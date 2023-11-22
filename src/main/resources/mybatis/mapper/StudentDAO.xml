@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ict01.jpaproject03.dao.StudentDAO">
+<!--    [1] 전체학생 조회-->
+    <select id="listStudents" resultType="com.ict01.jpaproject03.dto.StudentDTO">
+        SELECT id, name, email, address FROM student ORDER BY id DESC
+    </select>
+    <!--    [2] 개인 학생 조회-->
+    <select id="getStudent" resultType="com.ict01.jpaproject03.dto.StudentDTO">
+        SELECT id, name, email, address FROM student WHERE id=#{param1}
+    </select>
+    <!--    [3] 학생 등록 조회-->
+    <insert id="saveStudent">
+        INSERT INTO student(name, email, address)
+        VALUES (#{param1}, #{param2}, #{param3})
+    </insert>
+    <!--    [4] 학생정보 수정 조회-->
+    <update id="updateStudent">
+        UPDATE student SET name=#{param2}, email=#{param3}, address=#{param4} WHERE id=#{param1}
+    </update>
+    <!--    [5] 학생정보 삭제-->
+    <delete id="deleteStudent">
+        DELETE FROM student WHERE id=#{param1}
+    </delete>
+</mapper>
